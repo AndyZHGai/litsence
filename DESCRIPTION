@@ -1,0 +1,11 @@
+Package: litsence
+Type: Package
+Title: Literature Search using API obtained from https://www.ncbi.nlm.nih.gov/research/litsense/?view=tutorial
+Version: 0.0.1
+Author: ZhonghuiGai
+Maintainer: ZhonghuiGai <zhgai@aliyun.com>
+Description: LitSense is a unique search system for making sense of the biomedical literature at the sentence level
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
