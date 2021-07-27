@@ -44,6 +44,7 @@ litsence <- function(keywords, n = 30){
   temp2 <- gsub("&quot;,", "", temp2)[1:n]
   temp2 <- gsub("\\&quot;", "", temp2)
   result <- as.data.frame(temp2)
+  colnames(result) <- NULL
   print("Bingo!")
   return(result)
 }

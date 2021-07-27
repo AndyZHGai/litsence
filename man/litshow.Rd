@@ -4,7 +4,7 @@
 \alias{litshow}
 \title{Show the result of litsence}
 \usage{
-litshow(litsence, n = 1:30)
+litshow(litsence, n = 1:30, size = 15)
 }
 \arguments{
 \item{litsence}{the result of litsence function}
@@ -19,7 +19,7 @@ Show the result of litsence
 }
 \examples{
 res <- litsence(keywords = "gut microbiota")
-litshow(res, 11:30)
+litshow(res, 1:30)
 }
 \author{
 ZhonghuiGai
