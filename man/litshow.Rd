@@ -4,12 +4,14 @@
 \alias{litshow}
 \title{Show the result of litsence}
 \usage{
-litshow(litsence, n = 1:30, size = 15)
+litshow(litsence, n = 1:30, size = 15, color = FALSE)
 }
 \arguments{
 \item{litsence}{the result of litsence function}
 
 \item{n}{display number}
+
+\item{size}{the text size}
 }
 \value{
 a plain text
