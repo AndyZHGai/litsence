@@ -4,12 +4,10 @@
 \alias{litsence}
 \title{Literature search using litsence API from NCBI}
 \usage{
-litsence(keywords, n = 30)
+litsence(keywords)
 }
 \arguments{
 \item{keywords}{keyword}
-
-\item{n}{the number of item}
 }
 \value{
 a data frame

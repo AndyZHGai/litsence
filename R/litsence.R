@@ -1,7 +1,6 @@
 #' Literature search using litsence API from NCBI
 #'
 #' @param keywords keyword
-#' @param n the number of item
 #'
 #' @return a data frame
 #' @export
@@ -9,7 +8,7 @@
 #' @author ZhonghuiGai
 #' @examples
 #' litsence("gut microbiota")
-litsence <- function(keywords, n = 30){
+litsence <- function(keywords){
   keyword <- keywords
   keyword <- gsub("  ", " ", keyword, perl = TRUE)
   #
@@ -22,7 +21,6 @@ litsence <- function(keywords, n = 30){
                                           "six", "seven", "eight", "nine", "ten",
                                           "eleven", "twelve"))
   docs <- tm::tm_map(docs, removeWords, stopwords("english"))
-  options (warn = 1)
   keyword <- docs$content
   #
   keyword <- strsplit(keyword, split = " ")[[1]]
@@ -40,11 +38,25 @@ litsence <- function(keywords, n = 30){
   print("-------- Downloading data --------------------------")
   temp <- readLines(con)
   temp2 <- temp[grep("&quot;text&quot;:", temp)]
+  temp3 <- temp[grep("&quot;section&quot;:", temp)]
   temp2 <- gsub("        &quot;text&quot;: &quot;", "", temp2)
-  temp2 <- gsub("&quot;,", "", temp2)[1:n]
+  temp3 <- gsub("        &quot;section&quot;:", "", temp3)
+  temp3 <- gsub(" ", "", temp3)
+  temp3 <- gsub("&quot;", "", temp3)
+  temp3 <- gsub(",", "", temp3)
+  temp3 <- tolower(temp3)
+  temp3 <- gsub("abstract", "abs", temp3)
+  temp3 <- gsub("discuss", "dis", temp3)
+  temp3 <- gsub("results", "res", temp3)
+  temp3 <- gsub("methods", "meth", temp3)
+  temp3 <- gsub("concl", "ctl", temp3)
+  temp2 <- gsub("&quot;,", "", temp2)
   temp2 <- gsub("\\&quot;", "", temp2)
-  result <- as.data.frame(temp2)
+  result <- data.frame(temp3, temp2)
   colnames(result) <- NULL
+  options (warn = 1)
   print("Bingo!")
   return(result)
 }
+
+

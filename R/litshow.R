@@ -26,7 +26,7 @@ litshow <- function(litsence, n = 1:30, size = 15,
                            background = "#D7261E80")  |>
       kableExtra::row_spec(m[m %% 2 == 0], bold = T, color = "black",
                            background = "#00bbff30")  |>
-      kableExtra::column_spec(1, bold = T, color = "black", italic = T,
+      kableExtra::column_spec(1:2, bold = T, color = "black", italic = T,
                               background = "#00bbff30", underline = T,
                               border_right = T, border_left = T)
   }
