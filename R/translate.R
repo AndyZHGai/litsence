@@ -10,17 +10,19 @@
 #' translate("中文")
 #' translate("English")
 translate <- function(input) {
-  stopifnot(length(input) < 6)
-  pattern <- grepl(pattern = "[\u4e00-\u9fa5]", input) # find the Chinese character
-  if (pattern[1]) {
+  if (class(input) == "data.frame") input <- input[[1]]
+  n <- length(input) # the input vector length
+  num <- nchar(input) # the number of characters in the input vector
+  n.char <- cumsum(num) # accumulated sum of the number of characters
+  stopifnot(n.char[n] < 5000)
+  pattern <- grepl(pattern = "[\u4e00-\u9fa5]", input[1]) # find the Chinese character
+  if (n > 1) input <- do.call("paste", list(input, collapse = " a_._a "))
+  if (pattern) {
     quary <- paste0("trans -b :en ", "\"", input, "\"")
   } else {
     quary <- paste0("trans -b :zh ", "\"", input, "\"")
   }
-  trans.out <- vector(mode = "character", length = length(input))
-  for (i in seq_along(quary)) {
-    trans.out[i] <- quary[i]  |>
-      system(intern = TRUE)
-  }
+  trans.out <- system(quary, intern = TRUE)
+  trans.out <- strsplit(trans.out, split = "a_._a")[[1]]
   return(trans.out)
 }
