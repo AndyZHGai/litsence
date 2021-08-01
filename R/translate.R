@@ -20,6 +20,6 @@ translate <- function(input) {
   lang <- ifelse(pattern, "en ", "zh ")
   quary <- paste0("trans -b -j :", lang, input)
   trans.out <- system(quary, intern = TRUE)
-  trans.out <- strsplit(trans.out, split = "a_._a")[[1]][]
+  trans.out <- strsplit(trans.out, split = "a_._a")[[1]]
   return(trans.out)
 }
